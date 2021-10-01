@@ -1,16 +1,14 @@
+import java.util.Random;
+
 public class Tamagotchi {
     public String name;
-    public int age;
-    public int hunger;
-    public int energy;
-    public boolean isDead;
+    public int age = 0;
+    public int hunger = 10;
+    public int energy = 10;
+    public boolean isDead = false;
 
     public Tamagotchi (String name){
         this.name = name;
-        this.age = 0;
-        this.hunger = 10;
-        this.energy = 10;
-        this.isDead = false;
     }
 
     public void soutRules(){
@@ -32,6 +30,20 @@ public class Tamagotchi {
     }
 
 
+    public void scratch(){
+        Random random = new Random();
+        boolean shortScratch = random.nextBoolean();
+        if (shortScratch == true){
+            System.out.println("You start scratching " + this.name + ". He does not seem to enjoy i much so you only scratch for 5 minutes.");
+            this.energy = this.energy - 1;
+            this.hunger = this.hunger - 1;
+        }
+        else {
+            System.out.println("You start scratching " + this.name + ". He seems to love it, so you keep going for atleast 30 minutes.");
+            this.energy = this.energy - 2;
+            this.hunger = this.hunger - 1;
+        }
+    }
 
 
 

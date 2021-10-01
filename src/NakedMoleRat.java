@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 public class NakedMoleRat extends Tamagotchi{
-    public boolean isMoist;
-    public boolean needsNailsCut;
+    public boolean isMoist = true;
+    public boolean needsNailsCut = false;
 
     public NakedMoleRat(String name){
         super(name);
-        this.isMoist = true;
-        this.needsNailsCut = false;
     }
 
     //Alle regler til Naked mole rat
@@ -21,9 +19,16 @@ public class NakedMoleRat extends Tamagotchi{
         System.out.println("Now lets start the life of your Tamagotchi!!!");
     }
 
-
-
-
+    @Override
+    public void walkOrCutNails(){
+        if (this.needsNailsCut == true){
+            System.out.println("You cut " + this.name + "'s nails. He doesn't like it so he spends a lot of energy when you do it.");
+            this.energy = this.energy - 4;
+        }
+        else {
+            System.out.println(this.name + " does not need a trim. Naked mole rats only need to get their nails cut once a year.");
+        }
+    }
 
     public void moisturise(){
         Scanner scanner = new Scanner(System.in);
@@ -67,6 +72,7 @@ public class NakedMoleRat extends Tamagotchi{
                 "\nHunger = " + hunger + " of 10" +
                 "\nEnergy = " + energy + " of 10" +
                 "\nisMoist = " + isMoist +
+                "\nneedsNailsCut = " + needsNailsCut +
                 "\nisDead = " + isDead + "";
     }
 }

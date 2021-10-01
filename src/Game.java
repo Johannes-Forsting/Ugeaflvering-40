@@ -18,8 +18,10 @@ public class Game {
                     animal[0] = new Dog(name);
                 break;
         }
+        animal[0].soutRules();
         while (animal[0].isDead == false){
             System.out.println(animal[0]);
+            callOptions(animalChosen, name);
             chooseActivity(animal, animalChosen);
             animal[0].checkForDeath();
         }
@@ -29,11 +31,24 @@ public class Game {
 
     }
 
+    public static void callOptions(String animal, String name){
+        String walkOrCut = animal.equals("Dog") ? "Take for a walk" : "Cut nails";
+        System.out.println("What would you like to do with " + name + "?");
+        System.out.println("Press 1 for: Sleep");
+        System.out.println("Press 2 for: Play");
+        System.out.println("Press 3 for: Feed");
+        System.out.println("Press 4 for: Scratch");
+        System.out.println("Press 5 for: " + walkOrCut);
+        System.out.println("Press 6 for: Celebrate birthday!");
+        System.out.println("Press 7 for: EXIT");
+
+    }
+
     public static void chooseActivity(Tamagotchi[] animal, String animalChosen){
         Scanner scanner = new Scanner(System.in);
         try {
             int activity = scanner.nextInt();
-            if (activity > 0 && activity < 5){
+            if (activity > 0 && activity < 8){
                 switch (activity){
                     case 1:
                         System.out.println("Sleep");
@@ -43,17 +58,18 @@ public class Game {
                         //Play
                         break;
                     case 3:
-                        //Scratch
+                        //Feed
                         break;
                     case 4:
-                        System.out.println("celebrate birthday");
-                        animal[0].celebrateBirthday();
+                        animal[0].scratch();
                         break;
                     case 5:
-                        //walt dog or cut nails on rat
-                        break;
+                        animal[0].walkOrCutNails();
                     case 6:
-                        //Exit game
+                        animal[0].celebrateBirthday();
+                        break;
+                    case 7:
+                        animal[0].isDead = true;
                         break;
                 }
 

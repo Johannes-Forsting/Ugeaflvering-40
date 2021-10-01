@@ -1,10 +1,11 @@
+import java.util.Random;
+
 public class Dog extends Tamagotchi{
-    boolean needsAWalk;
+    boolean needsAWalk = false;
 
 
     public Dog(String name){
         super(name);
-        this.needsAWalk = false;
     }
 
     //Alle regler til hunde
@@ -16,6 +17,23 @@ public class Dog extends Tamagotchi{
         System.out.println("And remember that dogs are highly alergic to chocolate 🙄.");
         System.out.println("Now lets start the life of your Tamagotchi!!!");
     }
+
+    @Override
+    public void walkOrCutNails(){
+        Random random = new Random();
+        boolean isWeatherBad = random.nextBoolean();
+        if (isWeatherBad == true){
+            System.out.println("You take " + this.name + " for a walk, but it is raining and you only want to do a small walk.");
+            this.energy = this.energy -1;
+        }
+        else {
+        System.out.println("You take " + this.name + " for a nice walk. The sun is shining and all is good. You walk for hours and hours.");
+        System.out.println(this.name + " is exhausted from the walk and properly needs food and sleep");
+        this.hunger = this.hunger - 4;
+        this.energy = this.energy - 4;
+        }
+    }
+
 
 
     @Override
