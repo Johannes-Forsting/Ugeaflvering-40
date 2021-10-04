@@ -17,6 +17,7 @@ public class Tamagotchi {
     public void walkOrCutNails(){
     }
 
+    //Checker om dyret er ød ved at tjekke alder, energy og hunger.
     public void checkForDeath(){
         if (this.age > 30){
             this.isDead = true;
@@ -29,7 +30,18 @@ public class Tamagotchi {
         }
     }
 
+    //Fodrer dyret
+    public void feedAnimal(){
+        if (this.hunger < 8) {
+            System.out.println("You fill the feeding-bowl of " + this.name + ". He eats it all and his hunger is restored.");
+            this.hunger = 10;
+        }
+        else{
+            System.out.println("You fill the feeding-bowl of " + this.name + ", bu the is not hungry yet. He just sniffs it and walk away.");
+        }
+    }
 
+    //Nusser/klør sit dyr
     public void scratch(){
         Random random = new Random();
         boolean shortScratch = random.nextBoolean();
@@ -46,9 +58,11 @@ public class Tamagotchi {
     }
 
 
-
     //Celebrate birthday. Der er gået et års tid og din tamagotchi er blevet 1 år ældre.
-    public void celebrateBirthday(){
+    public void celebrateBirthday(String animalChosen){
+        if (animalChosen.equals("Naked mole rat")){
+            growNails();
+        }
         System.out.println("You celebrate " + this.name +"'s birthday. Its a cheerfull day with love and laughter.");
         System.out.println("But enjoy it while you can. Animals dont live forever.");
         this.age = this.age + 1;
@@ -56,30 +70,30 @@ public class Tamagotchi {
         this.energy = 10;
     }
 
-    //Sove metode. Bliver kun brugt af dog, da nake mole rat overrider den og laver sin egen metode.
+    //Gør at neglene vokser på rotten
+    public void growNails(){
+    }
+
+    //Sove metode. Begge dyr overrider så der er ikke noget funktion her.
     public void sleep(){
-        if (this.energy > 6){
-            System.out.println(this.name + " is not tired. Its energy is too high. Do something else with " + this.name + " before sleeping.");
-        }
-        else if (this.energy > 1){
-            System.out.println(this.name + " is a bit tired and falls asleep relatively fast. Energy is restored fully.");
-            this.energy = 10;
-            System.out.println(this.name + " also got a little bit more hungry.");
-            this.hunger = this.hunger - 3;
-        }
-        else {
-            System.out.println(this.name + " is exhausted, and falls asleep like a rock, but sleeps so much that energy is only restored to 8." );
-            System.out.println(this.name + " also got a little bit more hungry.");
-            this.hunger = this.hunger - 3;
-        }
     }
 
     //Standard metode som bliver kørt hvis ingen af de 2 dræbere bliver valgt.
     public void playWithToy(String toy){
-        System.out.println(this.name + " is playing with " + toy + ".");
-        System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
-        this.energy = this.energy - 3;
-        this.hunger = this.hunger - 1;
+
+        if (toy.equals("Dehumidifier") || toy.equals("Chocolatepiece")) {
+            deathToy(toy);
+        }
+        else{
+            System.out.println(this.name + " is playing with " + toy + ".");
+            System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
+            this.energy = this.energy - 3;
+            this.hunger = this.hunger - 1;
+        }
+    }
+
+    //Hvis man vælger dræberlegetøjet for en af dyrene dræber man dyret med denne metode
+    public void deathToy(String toy){
     }
 
 

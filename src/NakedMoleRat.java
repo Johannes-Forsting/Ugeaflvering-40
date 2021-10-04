@@ -20,10 +20,17 @@ public class NakedMoleRat extends Tamagotchi{
     }
 
     @Override
+    public void growNails(){
+        this.needsNailsCut = true;
+    }
+
+
+    @Override
     public void walkOrCutNails(){
         if (this.needsNailsCut == true){
             System.out.println("You cut " + this.name + "'s nails. He doesn't like it so he spends a lot of energy when you do it.");
             this.energy = this.energy - 4;
+            this.needsNailsCut = false;
         }
         else {
             System.out.println(this.name + " does not need a trim. Naked mole rats only need to get their nails cut once a year.");
@@ -64,10 +71,23 @@ public class NakedMoleRat extends Tamagotchi{
         }
     }
 
+    @Override
+    public void deathToy(String toy){
+        if (toy.equals("Dehumidifier")){
+            System.out.println(this.name + " plays with the " + toy + ". It slowly dries him out and he dies. Watch out for dehydrators when you own a naked mole rat.");
+            this.isDead = true;
+        }
+        else{
+            System.out.println(this.name + " is playing with " + toy + ".");
+            System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
+            this.energy = this.energy - 3;
+            this.hunger = this.hunger - 1;
+        }
+    }
 
     @Override
     public String toString() {
-        return name + "'s stats are now:" +
+        return "\n" + name + "'s stats are now:" +
                 "\nAge = " + age + " years old" +
                 "\nHunger = " + hunger + " of 10" +
                 "\nEnergy = " + energy + " of 10" +

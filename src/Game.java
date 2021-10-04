@@ -4,26 +4,30 @@ import java.util.Scanner;
 import java.util.SortedMap;
 
 public class Game {
+    public static Scanner scanner = new Scanner(System.in);
+    public static String[] toys = {"Ball", "Teddybear", "Squeekytoy", "Dehumidifier", "Chewtoy", "Chocolatepiece"};
+    public static String toy = "";
     public static void main(String[] args) {
-        String[] toys = {"Ball", "Teddybear", "Squeekytoy", "dehumidifier", "Chewtoy", "Chocolatepiece"};
-        Tamagotchi[] animal = new Tamagotchi[1];
+        Tamagotchi animal = new Tamagotchi("");
         String animalChosen = chooseAnimal();
         String name = chooseName(animalChosen);
 
         switch (animalChosen){
             case "Naked mole rat":
-                animal[0] = new NakedMoleRat(name);
+                animal = new NakedMoleRat(name);
                 break;
             case "Dog":
-                    animal[0] = new Dog(name);
+                    animal = new Dog(name);
                 break;
         }
-        animal[0].soutRules();
-        while (animal[0].isDead == false){
-            System.out.println(animal[0]);
+
+
+        while (animal.isDead == false){
+            printDog();
+            System.out.println(animal);
             callOptions(animalChosen, name);
             chooseActivity(animal, animalChosen);
-            animal[0].checkForDeath();
+            animal.checkForDeath();
         }
         System.out.println(name + " is dead. You no longer have a pet.");
 
@@ -31,9 +35,14 @@ public class Game {
 
     }
 
+    //ASCII art af hund
+    public static void printDog(){
+
+    }
+
     public static void callOptions(String animal, String name){
         String walkOrCut = animal.equals("Dog") ? "Take for a walk" : "Cut nails";
-        System.out.println("What would you like to do with " + name + "?");
+        System.out.println("\nWhat would you like to do with " + name + "?");
         System.out.println("Press 1 for: Sleep");
         System.out.println("Press 2 for: Play");
         System.out.println("Press 3 for: Feed");
@@ -44,32 +53,33 @@ public class Game {
 
     }
 
-    public static void chooseActivity(Tamagotchi[] animal, String animalChosen){
-        Scanner scanner = new Scanner(System.in);
+    public static void chooseActivity(Tamagotchi animal, String animalChosen){
         try {
             int activity = scanner.nextInt();
             if (activity > 0 && activity < 8){
                 switch (activity){
                     case 1:
                         System.out.println("Sleep");
-                        animal[0].sleep();
+                        animal.sleep();
                         break;
                     case 2:
-                        //Play
+                        toy = chooseToy(animal);
+                        animal.playWithToy(toy);
                         break;
                     case 3:
-                        //Feed
+                        animal.feedAnimal();
                         break;
                     case 4:
-                        animal[0].scratch();
+                        animal.scratch();
                         break;
                     case 5:
-                        animal[0].walkOrCutNails();
+                        animal.walkOrCutNails();
+                        break;
                     case 6:
-                        animal[0].celebrateBirthday();
+                        animal.celebrateBirthday(animalChosen);
                         break;
                     case 7:
-                        animal[0].isDead = true;
+                        animal.isDead = true;
                         break;
                 }
 
@@ -84,6 +94,34 @@ public class Game {
 
         }
     }
+
+    public static String chooseToy(Tamagotchi animal){
+        System.out.println("What toy should " + animal.name + " play with?");
+        for (int i = 0; i < toys.length; i++){
+            System.out.println("Press " + (i + 1) + " for: " +  toys[i]);
+        }
+
+        while (true){
+            try{
+                int choice = scanner.nextInt();
+                if (choice > 0 && choice <= toys.length){
+                    toy = toys[choice - 1];
+                    break;
+                }
+                else{
+                    throw new Exception();
+                }
+            }
+            catch (Exception e){
+                scanner.nextLine();
+                System.out.println("Only write a number between " + 1 + " and " + toys.length);
+            }
+        }
+
+        return toy;
+    }
+
+
 
 
 
