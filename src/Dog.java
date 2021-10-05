@@ -56,6 +56,23 @@ public class Dog extends Tamagotchi{
                 this.energy = this.energy - 4;
             }
             needsAWalk = false;
+            System.out.println("        ,,,\n" +
+                    "       /   \\\n" +
+                    "      | o o |\n" +
+                    "     (|  ^  |)\n" +
+                    "       \\___/\n" +
+                    "         | _ _ _ _ _ _ _ _,,\n" +
+                    "        /|                ()            \n" +
+                    "       / |                  \\\n" +
+                    "      /  |                   \\\n" +
+                    "         |                    \\  /)-_-(\\    \n" +
+                    "         |                     \\  (o o)     \n" +
+                    "         |                .-----\\_/\\o/      \n" +
+                    "        / \\              /  __      /       \n" +
+                    "       /   \\         \\__/^ /  \\_\\ |/        \n" +
+                    "      /     \\             \\\\     ||         \n" +
+                    "     /       \\            //     ||         \n" +
+                    "    /         \\           |\\     |\\   ");
         }
         else {
             System.out.println(this.name + " does not need a walk. Do something else with him.");

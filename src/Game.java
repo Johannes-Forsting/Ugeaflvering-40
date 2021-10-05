@@ -15,15 +15,17 @@ public class Game {
         switch (animalChosen){
             case "Naked mole rat":
                 animal = new NakedMoleRat(name);
+                printRat();
                 break;
             case "Dog":
                     animal = new Dog(name);
+                    printDog();
                 break;
         }
+        animal.soutRules();
 
 
         while (animal.isDead == false){
-            printDog();
             System.out.println(animal);
             callOptions(animalChosen, name);
             chooseActivity(animal, animalChosen);
@@ -37,6 +39,25 @@ public class Game {
 
     //ASCII art af hund
     public static void printDog(){
+        System.out.println("---------------- This is your new dog. Say hi! ----------------");
+        System.out.println("\n" +
+                "     |\\_/|                  \n" +
+                "     | @ @   \n" +
+                "     |   <>              _  \n" +
+                "     |  _/\\------____ ((| |))\n" +
+                "     |               `--' |   \n" +
+                " ____|_       ___|   |___.' \n" +
+                "/_/_____/____/_______|");
+
+    }
+
+    public static void printRat(){
+        System.out.println("---------------- This is your new naked mole rat. Say hi! ----------------");
+        System.out.println("\n" +
+                "('+'`)_------_   \n" +
+                "   W           -######\n" +
+                "    /|/----\\|\\  \n" +
+                "   \" \"      \" \"");
 
     }
 
@@ -50,7 +71,6 @@ public class Game {
         System.out.println("Press 5 for: " + walkOrCut);
         System.out.println("Press 6 for: Celebrate birthday!");
         System.out.println("Press 7 for: EXIT");
-
     }
 
     public static void chooseActivity(Tamagotchi animal, String animalChosen){
@@ -59,7 +79,6 @@ public class Game {
             if (activity > 0 && activity < 8){
                 switch (activity){
                     case 1:
-                        System.out.println("Sleep");
                         animal.sleep();
                         break;
                     case 2:

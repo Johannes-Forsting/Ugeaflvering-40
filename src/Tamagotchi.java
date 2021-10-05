@@ -84,12 +84,30 @@ public class Tamagotchi {
         if (toy.equals("Dehumidifier") || toy.equals("Chocolatepiece")) {
             deathToy(toy);
         }
-        else{
+        else if (toy.equals("Teddybear") || toy.equals("Squeekytoy")){
             System.out.println(this.name + " is playing with " + toy + ".");
+            System.out.println("   /\\___/\\\n" +
+                    "   | o o |\n" +
+                    "  __\\_^_/__\n" +
+                    " (__/   \\__)\n" +
+                    "  _|  .  |_\n" +
+                    " (__\\___/__)");
+
             System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
-            this.energy = this.energy - 3;
-            this.hunger = this.hunger - 1;
         }
+        else {
+            System.out.println(this.name + " is playing with " + toy + ".");
+            System.out.println("    __\n" +
+                    " .'\".'\"'.\n" +
+                    ":._.\"\"._.:\n" +
+                    ":  \\__/  :\n" +
+                    " './  \\.'\n" +
+                    "    \"\"\n");
+            System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
+        }
+
+        this.energy = this.energy - 3;
+        this.hunger = this.hunger - 1;
     }
 
     //Hvis man vælger dræberlegetøjet for en af dyrene dræber man dyret med denne metode
