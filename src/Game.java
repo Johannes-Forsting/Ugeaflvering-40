@@ -8,10 +8,15 @@ public class Game {
     public static String[] toys = {"Ball", "Teddybear", "Squeekytoy", "Dehumidifier", "Chewtoy", "Chocolatepiece"};
     public static String toy = "";
     public static void main(String[] args) {
+
+        //Tamagotchi objektet oprettes men specifikiseres senere i programmet om det skal være en hund eller hårløs pungrotte.
         Tamagotchi animal = new Tamagotchi("");
+
+        //Her bruger jeg 2 metoder til at vælge navn samt hvilket dyr man vil spille med.
         String animalChosen = chooseAnimal();
         String name = chooseName(animalChosen);
 
+        //En switch der gør det oprettede dyr til enten en hårløs pungrotte eller en hund
         switch (animalChosen){
             case "Naked mole rat":
                 animal = new NakedMoleRat(name);
@@ -22,9 +27,14 @@ public class Game {
                     printDog();
                 break;
         }
+
+        //Reglerne for det specifikke dyr udprintes
         animal.soutRules();
 
 
+        //I dette whileloop kører hele spillet. Jeg printer dyrets stats, derefter skriver jeg hvilke muligheder man har.
+        //Så skal man vælge hvad man gør. Det bliver så udført. og til sidst tjekker jeg stats igennem om dyret er dødt.
+        //Det kører så på repeat indtil man trykker "EXIT" eller dyret dør.
         while (animal.isDead == false){
             System.out.println(animal);
             callOptions(animalChosen, name);
@@ -32,8 +42,6 @@ public class Game {
             animal.checkForDeath();
         }
         System.out.println(name + " is dead. You no longer have a pet.");
-
-
 
     }
 
@@ -51,6 +59,7 @@ public class Game {
 
     }
 
+    //ASCII art af hårløs pungrotte
     public static void printRat(){
         System.out.println("---------------- This is your new naked mole rat. Say hi! ----------------");
         System.out.println("\n" +
@@ -61,6 +70,7 @@ public class Game {
 
     }
 
+    //Metode til at printe hvilke valgmuligheder man har. Nr. 5 ændres afhængig af hvilket dyr man vælger.
     public static void callOptions(String animal, String name){
         String walkOrCut = animal.equals("Dog") ? "Take for a walk" : "Cut nails";
         System.out.println("\nWhat would you like to do with " + name + "?");
@@ -73,6 +83,8 @@ public class Game {
         System.out.println("Press 7 for: EXIT");
     }
 
+    //Metode til at vælge aktivitet. Når aktiviteten er valgt kører metoden for den aktivitet.
+    //Nogle kører fra Tamagotchi, og andre bliver overrided i hver sin klasse.
     public static void chooseActivity(Tamagotchi animal, String animalChosen){
         try {
             int activity = scanner.nextInt();
@@ -114,6 +126,7 @@ public class Game {
         }
     }
 
+    //Hvis man vælger aktiviteten "play" kører denne metode så man kan væælge hvilket legetøj der skal leges med.
     public static String chooseToy(Tamagotchi animal){
         System.out.println("What toy should " + animal.name + " play with?");
         for (int i = 0; i < toys.length; i++){
@@ -136,17 +149,11 @@ public class Game {
                 System.out.println("Only write a number between " + 1 + " and " + toys.length);
             }
         }
-
         return toy;
     }
 
 
-
-
-
-
-
-
+    //Metode til at vælge dyrets navn
     public static String chooseName(String animal){
         Scanner scanner = new Scanner(System.in);
         String name = "";
@@ -171,7 +178,7 @@ public class Game {
         return name;
     }
 
-
+    //Metode til at vælge dyr.
     public static String chooseAnimal(){
         Scanner scanner = new Scanner(System.in);
         String returnStatement = "";

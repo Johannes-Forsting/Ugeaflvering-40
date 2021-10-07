@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
 public class NakedMoleRat extends Tamagotchi{
+
     public boolean isMoist = true;
     public boolean needsNailsCut = false;
 
+    //Constructor
     public NakedMoleRat(String name){
         super(name);
     }
@@ -19,12 +21,14 @@ public class NakedMoleRat extends Tamagotchi{
         System.out.println("Now lets start the life of your Tamagotchi!!!");
     }
 
+    //Vokser bare neglene på den hårløse pungrotte
     @Override
     public void growNails(){
         this.needsNailsCut = true;
     }
 
 
+    //Metode som klipper dens negle, men kun hvis den har brug for det.
     @Override
     public void walkOrCutNails(){
         if (this.needsNailsCut == true){
@@ -37,6 +41,7 @@ public class NakedMoleRat extends Tamagotchi{
         }
     }
 
+    //Metode der spørg om man vil smørre sin pungrotte ind i fugtighedscreme. Hvis man ikke gør det inden den sover så tørre den ind og dør.
     public void moisturise(){
         Scanner scanner = new Scanner(System.in);
         String moistChoice = "";
@@ -58,6 +63,7 @@ public class NakedMoleRat extends Tamagotchi{
         }
     }
 
+    //Sove metode. Inden den udføres kører moisturise metoden
     @Override
     public void sleep(){
         System.out.println(this.name + " needs to be moisturised before sleeping. Would you like to moistureise " + this.name + "?");
@@ -71,6 +77,7 @@ public class NakedMoleRat extends Tamagotchi{
         }
     }
 
+    //Metode der tjekekr om man har valgt Dehumidifier. Hvis man har, tørre den indog dør.
     @Override
     public void deathToy(String toy){
         if (toy.equals("Dehumidifier")){
@@ -85,6 +92,7 @@ public class NakedMoleRat extends Tamagotchi{
         }
     }
 
+    //To string metode til at printe dyrets stats i hver runde.
     @Override
     public String toString() {
         return "\n" + name + "'s stats are now:" +

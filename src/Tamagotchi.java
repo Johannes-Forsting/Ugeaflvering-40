@@ -1,19 +1,23 @@
 import java.util.Random;
 
 public class Tamagotchi {
+    //Det eneste man kan vælge er navn, da resten bliver automatisk sat ved oprettelse.
     public String name;
     public int age = 0;
     public int hunger = 10;
     public int energy = 10;
     public boolean isDead = false;
 
+    //Constructor
     public Tamagotchi (String name){
         this.name = name;
     }
 
+    //Metoden bliver overrided i begge dyr
     public void soutRules(){
     }
 
+    //Metoden er specifik for begge dyr så bliver overrided i klasserne
     public void walkOrCutNails(){
     }
 
@@ -80,7 +84,6 @@ public class Tamagotchi {
 
     //Standard metode som bliver kørt hvis ingen af de 2 dræbere bliver valgt.
     public void playWithToy(String toy){
-
         if (toy.equals("Dehumidifier") || toy.equals("Chocolatepiece")) {
             deathToy(toy);
         }
@@ -105,15 +108,11 @@ public class Tamagotchi {
                     "    \"\"\n");
             System.out.println("It is so much fun, but " + this.name + " lost a bit of energy and got a little bit more hungry.");
         }
-
         this.energy = this.energy - 3;
         this.hunger = this.hunger - 1;
     }
 
-    //Hvis man vælger dræberlegetøjet for en af dyrene dræber man dyret med denne metode
+    //Hvis man vælger 1 af de 2 dræberlegetøj går man ind i metoden her og tjekker om det dræber det specifikke dyr.
     public void deathToy(String toy){
     }
-
-
-
 }

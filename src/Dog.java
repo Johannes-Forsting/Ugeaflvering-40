@@ -3,7 +3,7 @@ import java.util.Random;
 public class Dog extends Tamagotchi{
     boolean needsAWalk = false;
 
-
+    //Constructor
     public Dog(String name){
         super(name);
     }
@@ -17,6 +17,8 @@ public class Dog extends Tamagotchi{
         System.out.println("And remember that dogs are highly alergic to chocolate 🙄.");
         System.out.println("Now lets start the life of your Tamagotchi!!!");
     }
+
+    //Sove metode.
     @Override
     public void sleep(){
         if (this.energy > 6){
@@ -39,7 +41,7 @@ public class Dog extends Tamagotchi{
     }
 
 
-
+    //En gåtur med hunden. Den skifter random mellem godt og dårligt hver. Den printer også et flot billede af dig der går med din hund.
     @Override
     public void walkOrCutNails(){
         Random random = new Random();
@@ -79,6 +81,7 @@ public class Dog extends Tamagotchi{
         }
     }
 
+    //Tjekekr om man har valgt legetøjet chocolatepiece. Hvis man har det, får den en allergisk reaktion og dør.
     @Override
     public void deathToy(String toy){
         if (toy.equals("Chocolatepiece")){
@@ -93,7 +96,7 @@ public class Dog extends Tamagotchi{
         }
     }
 
-
+    //To string metoden til at printe dyrets stats.
     @Override
     public String toString() {
         return "\n" + name + "'s stats are now:" +
